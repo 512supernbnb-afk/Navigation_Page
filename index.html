@@ -61,7 +61,7 @@
 <body>
 
 <div class="gallery-wrapper">
-    <img id="display-img" class="main-image" src="images/原始畫面.jpg" alt="操作導覽畫面">
+    <img id="display-img" class="main-image" src="images/原始畫面.png" alt="操作導覽畫面">
     
     <div class="button-group">
         <button id="btn-prev" class="nav-btn" onclick="switchImage(-1)" disabled>上一頁</button>
@@ -80,8 +80,18 @@
         "images/圖層控制_4.png"
     ];
     
-    let currentIndex = 0;
+    // 執行圖片預先載入機制
+    function preloadImages(urls) {
+        for (let i = 1; i < urls.length; i++) {
+            let img = new Image();
+            img.src = urls[i];
+        }
+    }
+    
+    // 網頁載入時啟動預載
+    preloadImages(imageList);
 
+    let currentIndex = 0;
     const displayImg = document.getElementById("display-img");
     const btnPrev = document.getElementById("btn-prev");
     const btnNext = document.getElementById("btn-next");
